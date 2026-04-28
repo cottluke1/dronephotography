@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Woodlands Aerial Media | Drone Real Estate Photography</title>
+    <title>Woodlands Aerial Media | Luxury Real Estate Media</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -11,231 +11,217 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
         :root {
-            --forest: #2f4f3f;
-            --charcoal: #222222;
-            --soft-white: #fdfdfb;
-            --stone: #e5e1da;
+            --forest-green: #2f4f3f;
+            --warm-neutral: #fcfbf9;
+            --charcoal: #1a1a1a;
+            --stone: #d6d3d1;
         }
 
         body {
-            background-color: var(--soft-white);
+            background-color: var(--warm-neutral);
             color: var(--charcoal);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
         }
 
-        h1, h2, .serif { font-family: 'Playfair Display', serif; }
-
-        /* Intro Animation Styles */
-        #intro-overlay {
+        /* Luxury Intro Loader */
+        #loader {
             position: fixed;
             inset: 0;
             background: #0a0a0a;
+            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 100;
+            flex-direction: column;
         }
 
-        .hex-outline {
+        .hex-svg {
+            width: 100px;
+            height: 100px;
             stroke-dasharray: 600;
             stroke-dashoffset: 600;
-            animation: draw 1.5s ease-out forwards;
+            animation: drawHex 1.8s ease forwards;
         }
 
-        @keyframes draw { to { stroke-dashoffset: 0; } }
-        
-        .fade-out {
-            animation: fadeOut 0.8s ease forwards;
-            animation-delay: 1.8s;
-        }
-
-        @keyframes fadeOut {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.1); visibility: hidden; }
-        }
-
-        /* Branding Elements */
-        .btn-forest {
-            background-color: var(--forest);
+        .logo-text {
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1s forwards;
+            letter-spacing: 0.3em;
             color: white;
-            transition: all 0.3s ease;
-        }
-        .btn-forest:hover {
-            background-color: #1e352a;
-            opacity: 0.9;
+            font-size: 0.8rem;
+            margin-top: 20px;
         }
 
+        @keyframes drawHex {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .loader-exit {
+            transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* Typography & Layout */
+        h1, h2 { font-weight: 300; letter-spacing: -0.02em; }
+        
         .nav-link {
             font-size: 0.75rem;
+            font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
+        }
+
+        .btn-main {
+            background-color: var(--forest-green);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 4px;
             font-weight: 600;
-            color: #666;
+            transition: opacity 0.3s ease;
         }
 
-        .nav-link:hover { color: var(--forest); }
+        .btn-outline {
+            border: 1px solid var(--stone);
+            padding: 1.25rem 2.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
 
-        .gallery-img {
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.05);
-        }
+        .btn-outline:hover { background: var(--stone); }
+
+        /* Lightbox Simulation */
+        [x-cloak] { display: none !important; }
     </style>
 </head>
-<body x-data="{ mobileMenu: false, lightbox: false, activeImg: '' }">
+<body x-data="{ lightbox: false, activeImg: '' }">
 
-    <div id="intro-overlay" class="fade-out">
-        <div class="text-center">
-            <svg width="100" height="110" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="hex-outline" d="M50 5L93.3 30V80L50 105L6.7 80V30L50 5Z" stroke="#2f4f3f" stroke-width="2"/>
-                <text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Playfair Display" font-size="24" class="opacity-0" style="animation: fadeIn 1s ease forwards; animation-delay: 0.8s;">TW</text>
-            </svg>
-        </div>
+    <div id="loader">
+        <svg class="hex-svg" viewBox="0 0 100 100">
+            <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" 
+                  fill="none" stroke="#2f4f3f" stroke-width="2"/>
+            <text x="50" y="58" text-anchor="middle" fill="white" style="font-size: 24px; font-weight: bold; letter-spacing: 0;">TW</text>
+        </svg>
+        <div class="logo-text">WOODLANDS AERIAL MEDIA</div>
     </div>
 
     <nav class="fixed w-full z-40 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 border border-[#2f4f3f] flex items-center justify-center font-bold text-[10px] text-[#2f4f3f]">TW</div>
-                <div class="text-xs tracking-[0.3em] font-semibold uppercase">Woodlands Aerial</div>
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="nav-link text-lg">
+                <span class="text-[#2f4f3f] font-black">TW</span>
             </div>
             
-            <div class="hidden md:flex space-x-10 items-center">
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#contact" class="btn-forest px-6 py-2 text-xs font-bold uppercase tracking-widest rounded-sm">Schedule a Shoot</a>
+            <div class="hidden md:flex space-x-12 items-center">
+                <a href="#services" class="nav-link hover:text-gray-500">Services</a>
+                <a href="#work" class="nav-link hover:text-gray-500">Work</a>
+                <a href="#contact" class="bg-[#2f4f3f] text-white px-6 py-3 rounded text-[10px] uppercase tracking-widest font-bold">Schedule a Shoot</a>
             </div>
-
-            <button @click="mobileMenu = !mobileMenu" class="md:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
         </div>
     </nav>
 
-    <header class="pt-48 pb-32 px-6 bg-[#fdfdfb]">
-        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
-            <div class="w-12 h-12 border border-[#2f4f3f] mx-auto mb-12 flex items-center justify-center font-serif text-xl">TW</div>
-            <h1 class="text-4xl md:text-7xl font-light text-[#222] mb-8 leading-tight">
+    <section class="h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+        <div data-aos="fade-up" data-aos-delay="1800">
+            <h1 class="text-4xl md:text-7xl mb-8 max-w-4xl mx-auto leading-tight">
                 Showcase Your Property <br>the Way It Deserves
             </h1>
-            <p class="text-gray-500 text-lg md:text-xl mb-12 max-w-xl mx-auto font-light leading-relaxed">
-                Professional drone photography and video for real estate in The Woodlands. 
+            <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light">
+                Professional drone photography and video for real estate in The Woodlands.
             </p>
-            <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
-                <a href="#contact" class="btn-forest px-10 py-4 text-sm font-bold uppercase tracking-widest w-full md:w-auto">
-                    Schedule a Shoot
-                </a>
-                <a href="#work" class="text-[#222] text-sm font-bold uppercase tracking-widest border-b-2 border-gray-200 hover:border-[#2f4f3f] py-1 transition-all">
-                    View Our Work
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <section id="services" class="py-32 px-6 bg-white border-y border-gray-100">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20">
-                <h2 class="text-3xl font-light mb-4 italic">Specialized Drone Services</h2>
-                <p class="text-gray-400 text-sm tracking-widest uppercase font-bold">We specialize in drone-based media, not interior walkthroughs.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-16">
-                <div data-aos="fade-up">
-                    <h3 class="text-xl font-bold mb-4">Aerial Photography</h3>
-                    <p class="text-gray-500 leading-relaxed text-sm">Clear aerial images that show the full property layout, lot size, and surroundings. Essential for the wooded estates of our local market.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-xl font-bold mb-4">Cinematic Drone Video</h3>
-                    <p class="text-gray-500 leading-relaxed text-sm">Smooth, high-quality flyovers that highlight the home and its setting. Delivered in 4K for use across all listing platforms.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-xl font-bold mb-4">Property Flyovers</h3>
-                    <p class="text-gray-500 leading-relaxed text-sm">Focused drone coverage for larger lots, land, and unique properties where ground-level photos can't tell the full story.</p>
-                </div>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center text-[11px] uppercase tracking-widest">
+                <a href="#contact" class="btn-main">Schedule a Shoot</a>
+                <a href="#work" class="btn-outline">View Our Work</a>
             </div>
         </div>
     </section>
 
-    <section id="work" class="py-32 px-6">
+    <section id="work" class="py-24 px-8 bg-white">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-light mb-16 text-center">Our Work</h2>
-            
+            <div class="flex justify-between items-end mb-12 border-b border-gray-100 pb-8">
+                <h2 class="text-3xl">Our Work</h2>
+                <span class="text-[10px] uppercase tracking-widest text-gray-400">The Woodlands & Surrounding Areas</span>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <template x-for="i in [1,2,3,4,5,6]" :key="i">
-                    <div class="gallery-item relative overflow-hidden bg-gray-200 aspect-[4/3] cursor-pointer" 
-                         @click="activeImg = `https://picsum.photos/seed/${i+10}/1200/800`; lightbox = true">
-                        <img :src="`https://picsum.photos/seed/${i+10}/800/600`" class="gallery-img w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/10 hover:bg-black/0 transition-all duration-500"></div>
+                <template x-for="i in [1, 2, 3, 4, 5, 6]" :key="i">
+                    <div class="overflow-hidden bg-gray-100 cursor-pointer group relative aspect-[4/3]"
+                         @click="activeImg = `https://picsum.photos/seed/${i+20}/1200/800`; lightbox = true">
+                        <img :src="`https://picsum.photos/seed/${i+20}/800/600`" 
+                             class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" 
+                             alt="Property Shot">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white text-[10px] uppercase tracking-widest border border-white/40 px-4 py-2">Enlarge</span>
+                        </div>
                     </div>
                 </template>
             </div>
         </div>
     </section>
 
-    <section class="py-32 px-6 bg-[#f9f8f6]">
-        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-            <h2 class="text-3xl font-light mb-8">Built for The Woodlands Market</h2>
+    <section class="py-24 px-8 bg-[#fcfbf9]">
+        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-3xl mb-8">Built for The Woodlands</h2>
             <p class="text-gray-600 leading-relaxed mb-8 font-light italic">
-                “We understand how important surroundings are here—the trees, trails, and water. We focus on capturing the environment buyers are actually buying into.”
+                "We understand how important surroundings are here—trees, trails, and water define our community. We focus on capturing not just the home, but the environment buyers are actually buying into."
             </p>
-            <div class="w-12 h-[1px] bg-gray-300 mx-auto"></div>
+            <div class="w-12 h-px bg-stone-300 mx-auto"></div>
         </div>
     </section>
 
-    <section id="pricing" class="py-32 px-6 bg-white">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl font-light mb-8">Transparent Pricing</h2>
-            <p class="text-gray-500 mb-12 leading-relaxed font-light">
-                Every property is different. We tailor each shoot based on the home, lot size, and your marketing goals. Projects typically start at a base rate and scale from there.
+    <section class="py-24 px-8 bg-white border-y border-gray-100">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl mb-6">Simple, Transparent Pricing</h2>
+            <p class="text-gray-500 mb-10 font-light leading-relaxed">
+                Every property is different. We tailor each shoot to fit the home, location, and goals. Projects typically start at a base rate and scale based on property size and scope.
             </p>
-            <a href="#contact" class="inline-block border border-gray-300 hover:border-[#2f4f3f] px-12 py-4 text-xs font-bold uppercase tracking-[0.2em] transition-all">
-                Request a Quote
-            </a>
+            <a href="#contact" class="btn-outline inline-block text-[11px] uppercase tracking-widest">Request a Quote</a>
         </div>
     </section>
 
-    <section id="contact" class="py-32 px-6 border-t border-gray-100">
-        <div class="max-w-xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-light mb-4">Schedule Your Shoot</h2>
-                <p class="text-gray-400 text-xs tracking-widest uppercase">Serving The Woodlands and surrounding areas</p>
-            </div>
-            <form class="space-y-8">
-                <input type="text" placeholder="Your Name" class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-[#2f4f3f] bg-transparent transition">
-                <input type="email" placeholder="Email Address" class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-[#2f4f3f] bg-transparent transition">
-                <input type="text" placeholder="Property Address" class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-[#2f4f3f] bg-transparent transition">
-                <textarea rows="3" placeholder="Notes (Lot size, specific goals)" class="w-full border-b border-gray-200 py-3 focus:outline-none focus:border-[#2f4f3f] bg-transparent transition"></textarea>
-                <div class="text-center pt-8">
-                    <button type="submit" class="btn-forest px-16 py-4 text-xs font-bold uppercase tracking-widest rounded-sm">
-                        Get Started
-                    </button>
+    <section id="contact" class="py-24 px-8">
+        <div class="max-w-4xl mx-auto bg-stone-50 p-12 md:p-20 rounded-sm shadow-sm">
+            <h2 class="text-3xl mb-4">Schedule Your Shoot</h2>
+            <p class="text-gray-400 text-xs uppercase tracking-widest mb-12">Serving The Woodlands and surrounding areas</p>
+            
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                <div class="flex flex-col border-b border-stone-200">
+                    <input type="text" placeholder="NAME" class="bg-transparent py-4 text-[10px] uppercase tracking-widest focus:outline-none">
+                </div>
+                <div class="flex flex-col border-b border-stone-200">
+                    <input type="email" placeholder="EMAIL" class="bg-transparent py-4 text-[10px] uppercase tracking-widest focus:outline-none">
+                </div>
+                <div class="flex flex-col border-b border-stone-200 md:col-span-2">
+                    <input type="text" placeholder="PROPERTY ADDRESS" class="bg-transparent py-4 text-[10px] uppercase tracking-widest focus:outline-none">
+                </div>
+                <div class="md:col-span-2 pt-8">
+                    <button type="submit" class="btn-main w-full text-[11px] uppercase tracking-[0.2em]">Request My Quote</button>
                 </div>
             </form>
         </div>
     </section>
 
-    <div x-show="lightbox" class="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4" x-transition @click="lightbox = false">
-        <img :src="activeImg" class="max-w-full max-h-full shadow-2xl">
-        <button class="absolute top-10 right-10 text-white text-3xl">&times;</button>
-    </div>
-
-    <footer class="py-20 bg-white text-center">
-        <div class="w-8 h-8 border border-gray-200 mx-auto mb-6 flex items-center justify-center font-bold text-[8px] text-gray-400">TW</div>
-        <p class="text-gray-400 text-[10px] uppercase tracking-[0.4em]">&copy; 2026 Woodlands Aerial Media</p>
+    <footer class="py-12 border-t border-gray-100 text-center text-[10px] uppercase tracking-widest text-gray-400">
+        &copy; 2026 Woodlands Aerial Media
     </footer>
 
+    <div x-show="lightbox" x-cloak class="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4" @click.away="lightbox = false">
+        <button @click="lightbox = false" class="absolute top-8 right-8 text-white text-3xl">&times;</button>
+        <img :src="activeImg" class="max-h-[90vh] max-w-[90vw] object-contain">
+    </div>
+
     <script>
-        AOS.init({ duration: 1000, once: true });
-        
-        // Remove intro overlay from DOM after animation
-        setTimeout(() => {
-            document.getElementById('intro-overlay').style.display = 'none';
-        }, 3000);
+        // Intro Animation Controller
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('loader-exit');
+                AOS.init({ duration: 1000, once: true });
+            }, 2000);
+        });
     </script>
 </body>
 </html>
