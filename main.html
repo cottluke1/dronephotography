@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyView Pro | Premium Real Estate Drone Photography</title>
+    <meta name="description" content="Elevate your real estate listings with cinematic aerial photography and 4K drone videography.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        :root {
+            --accent: #3b82f6; /* Electric Blue */
+            --bg-dark: #0a0a0a;
+            --bg-card: #111111;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.4), var(--bg-dark));
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    </style>
+</head>
+<body x-data="{ mobileMenu: false }">
+
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <span class="text-blue-500 text-3xl">▲</span> SKYVIEW<span class="text-gray-400 font-light">PRO</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
+                <a href="#services" class="hover:text-blue-500 transition">Services</a>
+                <a href="#portfolio" class="hover:text-blue-500 transition">Portfolio</a>
+                <a href="#pricing" class="hover:text-blue-500 transition">Pricing</a>
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-full transition text-white">Book a Shoot</a>
+            </div>
+
+            <button @click="mobileMenu = !mobileMenu" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <div x-show="mobileMenu" x-transition class="md:hidden bg-black p-6 space-y-4 text-center">
+            <a href="#services" class="block">Services</a>
+            <a href="#portfolio" class="block">Portfolio</a>
+            <a href="#contact" class="block text-blue-500">Book Now</a>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/60 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1473960104372-8203596FA83d?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Drone View" class="w-full h-full object-cover">
+        </div>
+
+        <div class="relative z-20 text-center px-4" data-aos="fade-up" data-aos-duration="1500">
+            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tight">
+                Elevate Your <span class="text-blue-500">Listings</span><br>From Above
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                Premium aerial cinematography and photography designed to sell luxury properties 40% faster.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contact" class="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all transform hover:scale-105">
+                    Book a Shoot
+                </a>
+                <a href="#portfolio" class="px-10 py-4 border border-white/20 hover:bg-white/10 text-white font-bold rounded-full transition-all">
+                    View Gallery
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <section id="services" class="py-24 px-6 bg-[#0c0c0c]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div data-aos="fade-up">
+                    <h3 class="text-blue-500 font-bold mb-2 uppercase tracking-widest text-sm">Services</h3>
+                    <h2 class="text-4xl font-bold mb-6">Visual Excellence.</h2>
+                    <p class="text-gray-400 leading-relaxed">We don't just take photos; we create emotional narratives that allow buyers to experience the property before they ever set foot inside.</p>
+                </div>
+                
+                <div class="p-8 bg-neutral-900 rounded-2xl border border-white/5 hover:border-blue-500/50 transition cursor-default group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-blue-500 mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Aerial Photography</h4>
+                    <p class="text-gray-400 text-sm">High-resolution 48MP HDR shots capturing the perfect angle of the landscape and architecture.</p>
+                </div>
+
+                <div class="p-8 bg-neutral-900 rounded-2xl border border-white/5 hover:border-blue-500/50 transition cursor-default group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-blue-500 mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">4K Cinema Video</h4>
+                    <p class="text-gray-400 text-sm">Cinematic fly-throughs and orbital shots edited with color grading and background music.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Our Portfolio</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="relative group overflow-hidden rounded-xl h-80 shadow-2xl" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <p class="font-bold uppercase tracking-widest text-sm">Coastal Luxury Estate</p>
+                </div>
+            </div>
+            <div class="relative group overflow-hidden rounded-xl h-80 shadow-2xl" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <p class="font-bold uppercase tracking-widest text-sm">Modern Architecture</p>
+                </div>
+            </div>
+            <div class="relative group overflow-hidden rounded-xl h-80 shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <p class="font-bold uppercase tracking-widest text-sm">Acreage & Land</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 px-6 bg-[#0c0c0c]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="pricing-card p-10 bg-black border border-white/10 rounded-3xl" data-aos="fade-up">
+                    <h3 class="text-xl font-bold mb-2">Basic</h3>
+                    <div class="text-4xl font-black mb-6">$299</div>
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li>• 10 High-Res Photos</li>
+                        <li>• 24-Hour Turnaround</li>
+                        <li>• Basic Color Correction</li>
+                    </ul>
+                    <a href="#contact" class="block text-center py-3 border border-white/20 rounded-lg hover:bg-white hover:text-black transition">Choose Plan</a>
+                </div>
+                <div class="pricing-card p-10 bg-neutral-900 border-2 border-blue-600 rounded-3xl relative scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-xs font-bold px-4 py-1 rounded-full uppercase">Most Popular</div>
+                    <h3 class="text-xl font-bold mb-2">Pro</h3>
+                    <div class="text-4xl font-black mb-6">$549</div>
+                    <ul class="space-y-4 mb-8 text-gray-300 text-sm font-medium">
+                        <li>• 25 High-Res Photos</li>
+                        <li>• 60-Second 4K Video</li>
+                        <li>• Licensed Background Music</li>
+                        <li>• Professional Color Grading</li>
+                    </ul>
+                    <a href="#contact" class="block text-center py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition">Book Now</a>
+                </div>
+                <div class="pricing-card p-10 bg-black border border-white/10 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-2">Premium</h3>
+                    <div class="text-4xl font-black mb-6">$899</div>
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li>• Unlimited Photos</li>
+                        <li>• 2-Min Cinematic Film</li>
+                        <li>• 360 Virtual Tour</li>
+                        <li>• Social Media Teaser Edits</li>
+                    </ul>
+                    <a href="#contact" class="block text-center py-3 border border-white/20 rounded-lg hover:bg-white hover:text-black transition">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="bg-neutral-900/50 p-12 rounded-3xl border border-white/5 backdrop-blur-xl" data-aos="fade-up">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Start Your Project</h2>
+                    <p class="text-gray-400">Ready to make your property stand out? Let's get to work.</p>
+                </div>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Full Name" class="bg-black/50 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition">
+                    <input type="email" placeholder="Email Address" class="bg-black/50 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition">
+                    <input type="text" placeholder="Property Address" class="md:col-span-2 bg-black/50 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition">
+                    <textarea rows="4" placeholder="Your Message" class="md:col-span-2 bg-black/50 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-blue-500 transition"></textarea>
+                    <button type="submit" class="md:col-span-2 bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-600/20">
+                        Schedule Your Shoot
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 SkyView Pro Media. All Rights Reserved.</p>
+        <div class="mt-4 flex justify-center space-x-6">
+            <a href="#" class="hover:text-blue-500 transition">Instagram</a>
+            <a href="#" class="hover:text-blue-500 transition">Vimeo</a>
+            <a href="#" class="hover:text-blue-500 transition">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS (Animate on Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-quad'
+        });
+
+        // Smooth Scroll Logic for all browsers
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
