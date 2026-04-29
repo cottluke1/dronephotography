@@ -17,6 +17,7 @@
             --warm-neutral: #f9f8f6;
             --charcoal: #1a1a1a;
             --stone: #e5e1da;
+            --accent-gold: #c5a368;
         }
 
         body {
@@ -68,9 +69,17 @@
 
         /* UI Elements */
         .glass-nav {
-            background: rgba(249, 248, 246, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(47, 79, 63, 0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .hero-bg {
+            /* Image behind title */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://github.com/cottluke1/dronephotography/blob/main/b3d99607-59a1-4cf4-8d9b-f5c372b20a27.png?raw=true');
+            background-size: cover;
+            background-position: center;
         }
 
         .btn-primary {
@@ -134,16 +143,18 @@
     </div>
 
     <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tight flex items-center gap-2 sans-text uppercase">
-                <span class="text-[#2f4f3f]">The Woodlands</span><span class="font-light text-gray-500">Aerial Media</span>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://github.com/cottluke1/dronephotography/blob/main/4da30d1a-fbc0-4d84-b2b2-29fc245a525d.png?raw=true" 
+                     alt="The Woodlands Aerial Media" 
+                     class="h-12 w-auto">
             </div>
             
-            <div class="hidden md:flex space-x-10 text-xs uppercase tracking-[0.2em] font-semibold text-gray-600">
+            <div class="hidden md:flex space-x-10 text-[11px] uppercase tracking-[0.2em] font-bold text-gray-600 items-center">
                 <a href="#services" class="hover:text-[#2f4f3f] transition">Services</a>
                 <a href="#portfolio" class="hover:text-[#2f4f3f] transition">Portfolio</a>
                 <a href="#about" class="hover:text-[#2f4f3f] transition">Local Focus</a>
-                <a href="#contact" class="text-[#2f4f3f] border-b border-[#2f4f3f]/30 pb-1">Get Started</a>
+                <a href="#contact" class="btn-primary px-6 py-2.5 rounded-sm">Get Started</a>
             </div>
 
             <button @click="mobileMenu = !mobileMenu" class="md:hidden text-gray-800">
@@ -158,27 +169,67 @@
         </div>
     </nav>
 
-    <header class="relative min-h-[85vh] flex items-center justify-center bg-[#f9f8f6] pt-20">
+    <header class="relative min-h-screen flex items-center justify-center hero-bg pt-20">
         <div class="relative z-20 text-center px-4 max-w-5xl" data-aos="fade-up">
-            <h1 class="text-5xl md:text-8xl font-light text-[#1a1a1a] mb-8 tracking-tight leading-[1.1]">
+            <h1 class="text-5xl md:text-8xl font-light text-white mb-8 tracking-tight leading-[1.1]">
                 Elevated Perspective for <br>
-                <span class="italic font-serif text-[#2f4f3f]">Luxury Listings</span>
+                <span class="italic font-serif text-[var(--accent-gold)]">Luxury Listings</span>
             </h1>
-            <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-12 sans-text font-light leading-relaxed">
+            <p class="text-gray-100 text-lg md:text-xl max-w-2xl mx-auto mb-12 sans-text font-light leading-relaxed">
                 Premium aerial photography and cinematic video for real estate in The Woodlands. We capture the scale, the privacy, and the prestige of your property.
             </p>
             <div class="flex flex-col md:flex-row gap-6 justify-center sans-text">
-                <a href="#contact" class="btn-primary px-12 py-5 rounded shadow-lg font-medium tracking-wide uppercase text-sm">
+                <a href="#contact" class="btn-primary px-12 py-5 rounded-sm shadow-lg font-bold tracking-widest uppercase text-xs">
                     Schedule a Shoot
                 </a>
-                <a href="#portfolio" class="px-12 py-5 bg-transparent border border-stone-300 text-[#1a1a1a] rounded font-medium hover:bg-stone-100 transition uppercase text-sm">
+                <a href="#portfolio" class="px-12 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-sm font-bold hover:bg-white hover:text-black transition uppercase text-xs tracking-widest">
                     View Portfolio
                 </a>
             </div>
         </div>
     </header>
-    
-        <!-- Why Us (Strategic Advantage) -->
+
+    <section class="bg-white py-10 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="flex items-center gap-4">
+                <div class="text-[#2f4f3f]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">FAA Certified</h5>
+                    <p class="text-[11px] text-gray-500 sans-text">Professional, insured, and compliant.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-[#2f4f3f]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Premium Quality</h5>
+                    <p class="text-[11px] text-gray-500 sans-text">Stunning 4K cinematic storytelling.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-[#2f4f3f]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Local Expertise</h5>
+                    <p class="text-[11px] text-gray-500 sans-text">Based in The Woodlands area.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-[#2f4f3f]">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Fast Turnaround</h5>
+                    <p class="text-[11px] text-gray-500 sans-text">MLS-ready within 24-48 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-24 px-6 bg-white border-b border-gray-50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
